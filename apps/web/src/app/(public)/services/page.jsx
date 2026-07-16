@@ -53,7 +53,7 @@ export default function ServicesPage() {
         </p>
       </section>
 
-      {/* SERVICES GRID */}
+      {/* SERVICES GRID  */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service) => (
