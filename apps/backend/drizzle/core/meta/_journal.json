@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1778569174885,
+      "tag": "0000_cultured_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1779095596128,
+      "tag": "0001_awesome_mojo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1779111289003,
+      "tag": "0002_optimal_prowler",
+      "breakpoints": true
+    }
+  ]
+}
