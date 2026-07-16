@@ -124,7 +124,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* FOOTER CTA */}
+      {/* FOOTER CTA SECTION */}
       <section className="py-24 text-center px-6 text-white  bg-primary">
         <h2 className="text-3xl font-bold mb-8">Ready to evolve?</h2>
 
