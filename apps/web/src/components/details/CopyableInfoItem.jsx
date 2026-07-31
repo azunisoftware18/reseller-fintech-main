@@ -18,3 +18,4 @@ export default function CopyableInfoItem({ label, value, icon: Icon, onCopy }) {
     </div>
   );
 }
+ 
