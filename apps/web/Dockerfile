@@ -4,17 +4,13 @@ WORKDIR /app
 
 RUN apk add --no-cache curl wget
 RUN corepack enable
-
-COPY package.json ./
-
-RUN pnpm install
+RUN corepack prepare pnpm@10.17.1 --activate
 
 COPY . .
 
-RUN pnpm build
+RUN pnpm install --no-frozen-lockfile
 
-ENV NODE_ENV=production
-ENV PORT=3000
+RUN pnpm build
 
 EXPOSE 3000
 
