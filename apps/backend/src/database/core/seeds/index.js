@@ -4,6 +4,7 @@ import { createDefaultDomain } from './tenantDoamin.seed.js';
 import { seedTenants } from './tenants.seed.js';
 import { seedUsers } from './user.seed.js';
 import { seedStatesAndCities } from './state-city.seed.js';
+import { seedBanks } from './banks.seed.js';
 
 async function run() {
   console.log('🌱 Seeding started...\n');
@@ -31,7 +32,11 @@ async function run() {
 
     console.log('➡️ Seeding states and cities...');
     await seedStatesAndCities();
-    process.exit(0);
+    console.log('✅ States and cities seeded successfully\n');
+
+    console.log('➡️ Seeding banks...');
+    await seedBanks();
+    console.log('✅ Banks seeded successfully\n');
 
     console.log('🎉 All seeds completed successfully');
     process.exit(0);
