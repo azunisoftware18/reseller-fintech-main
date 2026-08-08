@@ -10,6 +10,6 @@ export default function BankPage() {
   return (
     <ClientGuard anyOf={[PERMISSIONS.BANK.READ]}>
       <BankAddClient />
-    </ClientGuard>
+    </ClientGuard> 
   );
 }
