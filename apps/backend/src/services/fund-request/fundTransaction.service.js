@@ -8,7 +8,7 @@ import { ApiError } from '../../lib/ApiError.js';
 import { buildTenantChain } from '../../lib/tenantHierarchy.util.js';
 import { FUNDREQUEST_SERVICE_CODE } from '../../config/constant.js';
 
-// import { platformServiceResolve } from '../../lib/platformServiceResolver.util.js';
+import { platformServiceResolve } from '../../lib/platformServiceResolver.util.js';
 import { getFundRequestPlugin } from '../../plugin_registry/fund-request/pluginRegistry.js';
 
 import WalletService from '../wallet.service.js';
@@ -69,7 +69,7 @@ class FundTransactionService {
     }
 
     // 🔌 Resolve plugin
-    const plugin = getFundRequestPlugin(provider.code, provider.config);
+    const plugin = getFundRequestPlugin(provider.code, provider.config);  
 
     // 🧠 Create provider transaction
     const providerResponse = await plugin.createTransaction({
@@ -155,12 +155,14 @@ class FundTransactionService {
     }
 
     if (status === 'SUCCESS') {
-      const wallets = await WalletService.getUserWallets(
-        actor.id,
-        actor.tenantId,
-      );
+      const payerWallet = await WalletService.getUserMainWallet(
+  actor.id,
+  actor.tenantId,
+);
 
-      const payerWallet = wallets.find((w) => w.walletType === 'MAIN');
+if (!payerWallet) {
+  throw ApiError.notFound('Approver wallet not found');
+}
 
       if (!payerWallet) {
         throw ApiError.notFound('Approver wallet not found');
@@ -171,19 +173,19 @@ class FundTransactionService {
       }
 
       await WalletService.debitWallet({
-        walletId: payerWallet.id,
-        amount: txn.amount,
-        transactionId: txn.id,
-        reference: `FUND_APPROVE_DEBIT:${txn.referenceId}`,
-        isSystem: actor.roleLevel === 0,
-      });
+  walletId: payerWallet.id,
+  amount: txn.amount,
+  transactionId: null,
+  reference: `FUND_APPROVE_DEBIT:${txn.referenceId}`,
+  isSystem: actor.roleLevel === 0,
+});
 
-      await WalletService.creditWallet({
-        walletId: txn.walletId,
-        amount: txn.amount,
-        transactionId: txn.id,
-        reference: `FUND_APPROVE_CREDIT:${txn.referenceId}`,
-      });
+await WalletService.creditWallet({
+  walletId: txn.walletId,
+  amount: txn.amount,
+  transactionId: null,
+  reference: `FUND_APPROVE_CREDIT:${txn.referenceId}`,
+});
     }
 
     await db

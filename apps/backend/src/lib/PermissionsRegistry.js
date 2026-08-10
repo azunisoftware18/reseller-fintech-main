@@ -85,10 +85,10 @@ export const PermissionsRegistry = {
   },
 
   PAYOUT: {
-    CREATE: 'payout:create',
-    READ: 'payout:read',
-    UPDATE: 'payout:update',
-    DELETE: 'payout:delete',
+    CREATE: 'PAYOUT.CREATE',
+    READ: 'PAYOUT.READ',
+    UPDATE: 'PAYOUT.UPDATE',
+    DELETE: 'PAYOUT.DELETE',
   },
 
   KYC: {
@@ -123,5 +123,12 @@ export const PermissionsRegistry = {
     UPDATE: 'BANK.UPDATE',
     DELETE: 'BANK.DELETE',
     VERIFICATION: 'BANK.VERIFICATION',
+  },
+
+  FUND_REQUEST: {
+    CREATE: 'FUND_REQUEST.CREATE',
+    READ: 'FUND_REQUEST.READ',
+    UPDATE: 'FUND_REQUEST.UPDATE',
+    DELETE: 'FUND_REQUEST.DELETE',
   },
 };

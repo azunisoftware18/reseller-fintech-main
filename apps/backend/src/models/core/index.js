@@ -41,3 +41,4 @@ export * from './rechargeOperatorMap.schema.js';
 export * from './rechargeCircleMapping.schema.js';
 export * from './banks.schema.js';
 export * from './bankDetail.schema.js';
+export * from '../fund-request/fundRequest.schema.js';

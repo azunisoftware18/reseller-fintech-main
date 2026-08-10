@@ -163,12 +163,12 @@ export default function CommissionForm({
   const { data: rolesData } = useRoles();
 
   const users =
-    usersData?.data?.flatMap((tenantBlock) =>
-      tenantBlock.users.map((user) => ({
-        ...user,
-        tenantName: tenantBlock.tenant?.tenantName,
-      })),
-    ) || [];
+  usersData?.data?.flatMap((tenantBlock) =>
+    tenantBlock.users?.map((user) => ({
+      ...user,
+      tenantName: tenantBlock.tenant?.tenantName,
+    })) || [],
+  ) || [];
 
   const roles = rolesData?.data || [];
   const mappings = mappingsData || [];

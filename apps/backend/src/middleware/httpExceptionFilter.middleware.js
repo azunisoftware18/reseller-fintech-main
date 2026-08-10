@@ -1,12 +1,24 @@
 export const httpExceptionFilter = (err, req, res, next) => {
+  console.error("=========== ERROR ===========");
+  console.error(err);
+
+  if (err.cause) {
+    console.error("=========== CAUSE ===========");
+    console.error(err.cause);
+  }
+
+  if (err.stack) {
+    console.error("=========== STACK ===========");
+    console.error(err.stack);
+  }
+
   let status = err.statusCode || 500;
-  let message = err.message || 'Internal server error';
+  let message = err.message || "Internal server error";
   let errors = err.errors || [];
 
-  // JSON parse error (body-parser)
-  if (err.type === 'entity.parse.failed') {
+  if (err.type === "entity.parse.failed") {
     status = 400;
-    message = 'Invalid JSON format';
+    message = "Invalid JSON format";
     errors = [];
   }
 
