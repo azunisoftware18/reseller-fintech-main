@@ -1,9 +1,11 @@
 const getApiBaseUrl = () => {
   const host = window.location.hostname;
+
   if (host === "localhost") {
     return `http://localhost:3001/${process.env.NEXT_PUBLIC_API_VERSION}`;
   }
-  return `https://${host}/api/${process.env.NEXT_PUBLIC_API_VERSION}`;
+
+  return `https://api.azzunique.cloud/${process.env.NEXT_PUBLIC_API_VERSION}`;
 };
 
 export const apiClient = async (url, options = {}) => {
